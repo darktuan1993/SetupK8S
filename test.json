@@ -1,0 +1,117 @@
+[
+    {
+        "apiVersion": "networking.k8s.io/v1",
+        "kind": "Ingress",
+        "metadata": {
+            "annotations": {
+                "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"networking.k8s.io/v1\",\"kind\":\"Ingress\",\"metadata\":{\"annotations\":{\"meta.helm.sh/release-name\":\"vnboat-app-website\",\"meta.helm.sh/release-namespace\":\"vnboat\"},\"creationTimestamp\":\"2023-09-15T02:17:31Z\",\"generation\":1,\"labels\":{\"app.kubernetes.io/instance\":\"vnboat-app-website\",\"app.kubernetes.io/managed-by\":\"Helm\",\"app.kubernetes.io/name\":\"vnboat-app-website\",\"app.kubernetes.io/version\":\"1.16.0\",\"helm.sh/chart\":\"generic-1.0.7\"},\"name\":\"vnboat-app-website\",\"namespace\":\"vnboat\",\"resourceVersion\":\"5196519\",\"uid\":\"d453e5d2-a881-4eb7-8e53-9da92b4cbbd4\"},\"spec\":{\"rules\":[{\"host\":\"ecos-vnboat-app.vnpaytest.vn\",\"http\":{\"paths\":[{\"backend\":{\"service\":{\"name\":\"vnboat-app-website\",\"port\":{\"number\":3136}}},\"path\":\"/\",\"pathType\":\"Prefix\"}]}}]},\"status\":{\"loadBalancer\":{}}}\n",
+                "meta.helm.sh/release-name": "vnboat-app-website",
+                "meta.helm.sh/release-namespace": "vnboat"
+            },
+            "creationTimestamp": "2023-09-29T11:56:18Z",
+            "generation": 1,
+            "labels": {
+                "app.kubernetes.io/instance": "vnboat-app-website",
+                "app.kubernetes.io/managed-by": "Helm",
+                "app.kubernetes.io/name": "vnboat-app-website",
+                "app.kubernetes.io/version": "1.16.0",
+                "helm.sh/chart": "generic-1.0.7"
+            },
+            "name": "vnboat-app-website",
+            "namespace": "vnboat",
+            "resourceVersion": "10829256",
+            "uid": "eb2fe9b2-a37b-4502-b48d-3c144179cc6a"
+        },
+        "spec": {
+            "ingressClassName": "nginx",
+            "rules": [
+                {
+                    "host": "ecos-vnboat-app.vnpaytest.vn",
+                    "http": {
+                        "paths": [
+                            {
+                                "backend": {
+                                    "service": {
+                                        "name": "vnboat-app-website",
+                                        "port": {
+                                            "number": 3136
+                                        }
+                                    }
+                                },
+                                "path": "/",
+                                "pathType": "Prefix"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "status": {
+            "loadBalancer": {
+                "ingress": [
+                    {
+                        "ip": "172.21.35.206"
+                    }
+                ]
+            }
+        }
+    },
+
+    {
+        "apiVersion": "networking.k8s.io/v1",
+        "kind": "Ingress",
+        "metadata": {
+            "annotations": {
+                "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"networking.k8s.io/v1\",\"kind\":\"Ingress\",\"metadata\":{\"annotations\":{\"meta.helm.sh/release-name\":\"vnboat-billing-api\",\"meta.helm.sh/release-namespace\":\"vnboat\"},\"creationTimestamp\":\"2023-09-15T02:17:32Z\",\"generation\":1,\"labels\":{\"app.kubernetes.io/instance\":\"vnboat-billing-api\",\"app.kubernetes.io/managed-by\":\"Helm\",\"app.kubernetes.io/name\":\"vnboat-billing-api\",\"app.kubernetes.io/version\":\"1.16.0\",\"helm.sh/chart\":\"generic-1.0.7\"},\"name\":\"vnboat-billing-api\",\"namespace\":\"vnboat\",\"resourceVersion\":\"5196672\",\"uid\":\"833f2fa6-3447-4f5e-a64b-966b187c122c\"},\"spec\":{\"rules\":[{\"host\":\"ecos-vnboat-billing-api.vnpaytest.local\",\"http\":{\"paths\":[{\"backend\":{\"service\":{\"name\":\"vnboat-billing-api\",\"port\":{\"number\":9331}}},\"path\":\"/\",\"pathType\":\"Prefix\"}]}}]},\"status\":{\"loadBalancer\":{}}}\n",
+                "meta.helm.sh/release-name": "vnboat-billing-api",
+                "meta.helm.sh/release-namespace": "vnboat"
+            },
+            "creationTimestamp": "2023-09-29T11:56:19Z",
+            "generation": 1,
+            "labels": {
+                "app.kubernetes.io/instance": "vnboat-billing-api",
+                "app.kubernetes.io/managed-by": "Helm",
+                "app.kubernetes.io/name": "vnboat-billing-api",
+                "app.kubernetes.io/version": "1.16.0",
+                "helm.sh/chart": "generic-1.0.7"
+            },
+            "name": "vnboat-billing-api",
+            "namespace": "vnboat",
+            "resourceVersion": "10829278",
+            "uid": "5e8567c0-f319-4671-88cf-0e83da227b24"
+        },
+        "spec": {
+            "ingressClassName": "nginx",
+            "rules": [
+                {
+                    "host": "ecos-vnboat-billing-api.vnpaytest.local",
+                    "http": {
+                        "paths": [
+                            {
+                                "backend": {
+                                    "service": {
+                                        "name": "vnboat-billing-api",
+                                        "port": {
+                                            "number": 9331
+                                        }
+                                    }
+                                },
+                                "path": "/",
+                                "pathType": "Prefix"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "status": {
+            "loadBalancer": {
+                "ingress": [
+                    {
+                        "ip": "172.21.35.206"
+                    }
+                ]
+            }
+        }
+    }
+]
