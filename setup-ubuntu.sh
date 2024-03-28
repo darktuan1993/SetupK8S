@@ -31,21 +31,20 @@ EOF
 }
 
 {
-    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-    apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+    echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 }
 
 apt-get update
-sudo apt-get install -y kubeadm=1.27.1-00 kubelet=1.27.1-00 kubectl=1.27.1-00 --allow-change-held-packages
+sudo apt-get install -y kubeadm=1.28.0-1.1 kubelet=1.28.0-1.1 kubectl=1.28.0-1.1 --allow-change-held-packages
 apt-mark hold kubelet kubeadm kubectl
 
 echo "source <(kubectl completion bash)" >> $HOME/.bashrc
 
 # Setup crictl
 
-wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.27.0/crictl-v1.27.0-linux-amd64.tar.gz
+wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.28.0/crictl-v1.28.0-linux-amd64.tar.gz
 
-tar zxvf crictl-v1.27.0-linux-amd64.tar.gz
+tar zxvf crictl-v1.28.0-linux-amd64.tar.gz
 
 sudo mv crictl /usr/local/bin
 
