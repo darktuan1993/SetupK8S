@@ -11,11 +11,10 @@
 #     echo "Phần tử thứ $i:"
 #     echo "$spec"
 # done
+# crontab 
+# test.txt
+# echo "1 $date" >> test.txt
 
 
 
-crontab 
-
-test.txt
-
-echo "1 $date" >> test.txt
+curl -skSL https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/v4.5.0/deploy/install-driver.sh | bash -s v4.5.0 --
