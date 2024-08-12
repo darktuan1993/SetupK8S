@@ -7,7 +7,7 @@ modprobe br_netfilter
 
 VERSION="v1.29"
 VERSION_k8s="1.29"
-VERSION_PATCH='7-1.1'
+VERSION_PATCH='0-1.1'
 
 {
 cat << EOF | tee /etc/sysctl.d/kubernetes.conf
