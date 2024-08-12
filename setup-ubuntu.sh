@@ -40,7 +40,7 @@ EOF
 }
 
 apt-get update
-sudo apt-get install -y kubeadm=$VERSION_k8s.$VERSION_PATCH kubelet=$VERSION_k8s.$VERSION_PATCH kubectl=$VERSION_k8s.$VERSION_PATCH 
+sudo apt-get install -y kubeadm=$VERSION_k8s.$VERSION_PATCH kubelet=$VERSION_k8s.$VERSION_PATCH kubectl=$VERSION_k8s.$VERSION_PATCH --allow-change-held-packages
 apt-mark hold kubelet kubeadm kubectl
 
 echo "source <(kubectl completion bash)" >> $HOME/.bashrc
@@ -67,3 +67,4 @@ sudo chmod +x /usr/local/bin/runsc
 
 #  apt-get install -y kubeadm=$VERSION.$VERSION_PATCH kubelet=$VERSION.$VERSION_PATCH kubectl=$VERSION.$VERSION_PATCH
 # sudo kubeadm init   --pod-network-cidr=192.168.0.0/16   --control-plane-endpoint=k8s-master.daniel.local ----upload-certs
+# kubeadm init --config=kubeadm-config.yaml --upload-certs
