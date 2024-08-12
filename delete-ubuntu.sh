@@ -5,10 +5,10 @@ sudo rm -rf /var/lib/cni/
 sudo rm -rf /var/run/kubernetes/
 sudo docker system prune -af
 sudo systemctl stop docker
-sudo apt-get remove --purge docker-ce docker-ce-cli containerd.io
+sudo apt-get remove --purge docker-ce docker-ce-cli containerd.io -y
 sudo systemctl stop containerd
-sudo apt-get remove --purge containerd
-sudo apt-get remove --purge kubeadm kubectl kubelet kubernetes-cni kube*
+sudo apt-get remove --purge containerd -y
+sudo apt-get remove --purge kubeadm kubectl kubelet kubernetes-cni kube* -y
 sudo rm -rf ~/.kube
 sudo rm -rf /etc/kubernetes/
 sudo rm -rf /var/lib/etcd/
