@@ -61,3 +61,5 @@ sudo chmod +x /usr/local/bin/containerd-shim-runsc-v1
 
 sudo wget https://storage.googleapis.com/gvisor/releases/nightly/latest/runsc -O /usr/local/bin/runsc
 sudo chmod +x /usr/local/bin/runsc
+
+# apt-cache madison kubelet
