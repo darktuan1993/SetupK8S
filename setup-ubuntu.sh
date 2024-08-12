@@ -5,8 +5,8 @@ swapoff -a; sed -i '/swap/d' /etc/fstab
 modprobe overlay
 modprobe br_netfilter
 
-VERSION="v1.29"
-VERSION_k8s="1.29"
+VERSION="v1.28"
+VERSION_k8s="1.28"
 VERSION_PATCH='0-1.1'
 
 {
@@ -40,7 +40,7 @@ EOF
 }
 
 apt-get update
-sudo apt-get install -y kubeadm=$VERSION_k8s.$VERSION_PATCH kubelet=$VERSION_k8s.$VERSION_PATCH kubectl=$VERSION_k8s.$VERSION_PATCH --allow-change-held-packages
+sudo apt-get install -y kubeadm=$VERSION_k8s.$VERSION_PATCH kubelet=$VERSION_k8s.$VERSION_PATCH kubectl=$VERSION_k8s.$VERSION_PATCH 
 apt-mark hold kubelet kubeadm kubectl
 
 echo "source <(kubectl completion bash)" >> $HOME/.bashrc
