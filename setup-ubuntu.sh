@@ -6,6 +6,7 @@ modprobe overlay
 modprobe br_netfilter
 
 VERSION="v1.29"
+VERSION_k8s="v1.29"
 VERSION_PATCH='7-1.1'
 
 {
@@ -39,7 +40,7 @@ EOF
 }
 
 apt-get update
-sudo apt-get install -y kubeadm=$VERSION.$VERSION_PATCH kubelet=$VERSION.$VERSION_PATCH kubectl=$VERSION.$VERSION_PATCH --allow-change-held-packages
+sudo apt-get install -y kubeadm=$VERSION_k8s.$VERSION_PATCH kubelet=$VERSION_k8s.$VERSION_PATCH kubectl=$VERSION_k8s.$VERSION_PATCH --allow-change-held-packages
 apt-mark hold kubelet kubeadm kubectl
 
 echo "source <(kubectl completion bash)" >> $HOME/.bashrc
@@ -63,3 +64,5 @@ sudo wget https://storage.googleapis.com/gvisor/releases/nightly/latest/runsc -O
 sudo chmod +x /usr/local/bin/runsc
 
 # apt-cache madison kubelet
+
+#  apt-get install -y kubeadm=$VERSION.$VERSION_PATCH kubelet=$VERSION.$VERSION_PATCH kubectl=$VERSION.$VERSION_PATCH
