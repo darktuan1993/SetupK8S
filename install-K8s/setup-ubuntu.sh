@@ -62,9 +62,3 @@ sudo chmod +x /usr/local/bin/containerd-shim-runsc-v1
 
 sudo wget https://storage.googleapis.com/gvisor/releases/nightly/latest/runsc -O /usr/local/bin/runsc
 sudo chmod +x /usr/local/bin/runsc
-
-# apt-cache madison kubelet
-
-#  apt-get install -y kubeadm=$VERSION.$VERSION_PATCH kubelet=$VERSION.$VERSION_PATCH kubectl=$VERSION.$VERSION_PATCH
-# sudo kubeadm init   --pod-network-cidr=192.168.0.0/16   --control-plane-endpoint=k8s-master.daniel.local ----upload-certs
-# kubeadm init --config=kubeadm-config.yaml --upload-certs
