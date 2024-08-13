@@ -5,8 +5,8 @@ swapoff -a; sed -i '/swap/d' /etc/fstab
 modprobe overlay
 modprobe br_netfilter
 
-VERSION="v1.29"
-VERSION_k8s="1.29"
+VERSION="v1.28"
+VERSION_k8s="1.28"
 VERSION_PATCH='0-1.1'
 
 {
