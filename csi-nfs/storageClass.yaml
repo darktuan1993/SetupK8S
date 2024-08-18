@@ -4,7 +4,7 @@ metadata:
   name: nfs-csi-synology
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: 10.0.0.3
+  server: 192.168.3.30
   share: /volume1/pv-test
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
