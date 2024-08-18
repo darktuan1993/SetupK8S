@@ -1,0 +1,9 @@
+# apt-cache madison kubelet
+#  apt-get install -y kubeadm=$VERSION.$VERSION_PATCH kubelet=$VERSION.$VERSION_PATCH kubectl=$VERSION.$VERSION_PATCH
+# sudo kubeadm init   --pod-network-cidr=192.168.0.0/16   --control-plane-endpoint=k8s-master.daniel.local ----upload-certs
+# kubeadm init --config=kubeadm-config.yaml --upload-certs
+
+# Lấy lại token
+# kubeadm token create --print-join-command
+
+ETCDCTL_API=3 etcdctl --endpoints=192.168.3.8:2379 --cert=/etc/kubernetes/pki/etcd/client.crt --key=/etc/kubernetes/pki/etcd/client.key --cacert=/etc/kubernetes/pki/etcd/ca.crt member list
