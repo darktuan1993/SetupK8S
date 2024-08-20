@@ -5,14 +5,14 @@ metadata:
   namespace: argocd-manager
 spec:
   selector:
-    istio: ingressgateway 
+    istio: ingressgateway
   servers:
-  - port:
-      number: 8080
-      name: http
-      protocol: HTTP
-    hosts:
-    - "m-argocd.bravo.com.vn"
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "m-argocd.bravo.com.vn"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -21,15 +21,12 @@ metadata:
   namespace: argocd-manager
 spec:
   hosts:
-  - "m-argocd.bravo.com.vn"
+    - "m-argocd.bravo.com.vn"
   gateways:
-  - argocd-gateway
+    - argocd-gateway
   http:
-  - match:
-    - uri:
-        exact: /
-    route:
-    - destination:
-        host: argocd-server
-        port:
-          number: 9080
+    - route:
+        - destination:
+            host: argocd-server
+            port:
+              number: 80
