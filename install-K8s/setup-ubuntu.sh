@@ -4,6 +4,8 @@ apt install curl apt-transport-https vim git wget software-properties-common lsb
 swapoff -a; sed -i '/swap/d' /etc/fstab
 modprobe overlay
 modprobe br_netfilter
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+echo 'br_netfilter' > /etc/modules-load.d/k8s.conf
 
 VERSION="v1.28"
 VERSION_k8s="1.28"
