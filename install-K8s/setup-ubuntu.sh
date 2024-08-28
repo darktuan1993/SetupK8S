@@ -1,6 +1,6 @@
 apt-get update && apt-get upgrade -y
 apt-get install -y vim
-apt install curl apt-transport-https vim git wget software-properties-common lsb-release ca-certificates -y
+apt install curl apt-transport-https vim git nfs-common wget software-properties-common lsb-release ca-certificates -y
 swapoff -a; sed -i '/swap/d' /etc/fstab
 modprobe overlay
 modprobe br_netfilter
