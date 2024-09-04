@@ -1,6 +1,6 @@
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
-kubernetesVersion: 1.28.0 #<-- Use the word stable for newest version
-controlPlaneEndpoint: "manager-cluster-k8s.bravo.com.vn:6443" #<-- Use the alias we put in /etc/hosts not the IP
+kubernetesVersion: 1.28.0 
+controlPlaneEndpoint: "manager-cluster-k8s.bravo.com.vn:6443" 
 networking:
   podSubnet: 172.16.0.0/16

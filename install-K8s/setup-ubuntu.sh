@@ -16,6 +16,16 @@ cat << EOF | tee /etc/sysctl.d/kubernetes.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 net.ipv4.ip_forward = 1
+net.ipv4.tcp_max_syn_backlog = 2048
+net.ipv4.ip_local_port_range = 10240 65535
+vm.swappiness = 10
+vm.overcommit_memory = 1
+vm.dirty_background_ratio = 5
+vm.dirty_ratio = 15
+fs.file-max = 500000
+fs.inotify.max_user_watches = 524288
+kernel.sched_migration_cost_ns=500000
+kernel.sched_autogroup_enabled=0
 EOF
 }
 
@@ -45,7 +55,7 @@ apt-get update
 sudo apt-get install -y kubeadm=$VERSION_k8s.$VERSION_PATCH kubelet=$VERSION_k8s.$VERSION_PATCH kubectl=$VERSION_k8s.$VERSION_PATCH --allow-change-held-packages
 apt-mark hold kubelet kubeadm kubectl
 
-echo "source <(kubectl completion bash)" >> $HOME/.bashrc
+# echo "source <(kubectl completion bash)" >> $HOME/.bashrc
 
 # Setup crictl
 
