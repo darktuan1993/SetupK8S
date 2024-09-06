@@ -2,7 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: argocd-gateway
-  namespace: argocd-manager
+  namespace: argocd
 spec:
   selector:
     istio: ingressgateway
@@ -12,16 +12,16 @@ spec:
         name: http
         protocol: HTTP
       hosts:
-        - "m-argocd.bravo.com.vn"
+        - "dev-argocd.bravo.com.vn"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: argocd-virtual-service
-  namespace: argocd-manager
+  namespace: argocd
 spec:
   hosts:
-    - "m-argocd.bravo.com.vn"
+    - "dev-argocd.bravo.com.vn"
   gateways:
     - argocd-gateway
   http:
