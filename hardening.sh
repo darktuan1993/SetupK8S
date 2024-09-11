@@ -710,7 +710,7 @@ create_scope_rules() {
     echo "Creating or appending to $SCOPE_RULES_FILE with the relevant rules..."
     
     # Append the rules for monitoring changes in /etc/sudoers and /etc/sudoers.d
-    printf "-w /etc/sudoers -p wa -k scope\n -w /etc/sudoers.d -p wa -k scope\n" | sudo tee -a "$SCOPE_RULES_FILE"
+    printf " -w /etc/sudoers -p wa -k scope\n -w /etc/sudoers.d -p wa -k scope\n" | sudo tee -a "$SCOPE_RULES_FILE"
     
     echo "Audit rules for monitoring scope changes added successfully."
 }
@@ -718,8 +718,8 @@ create_user_emulation_rules() {
     echo "Creating or appending to $USER_EMULATION_RULES_FILE with the relevant rules..."
     
     # Append the rules for 64-bit and 32-bit systems
-    printf "-a always,exit -F arch=b64 -C euid!=uid -F auid!=unset -S execve -k user_emulation\n" | sudo tee -a "$USER_EMULATION_RULES_FILE"
-    printf "-a always,exit -F arch=b32 -C euid!=uid -F auid!=unset -S execve -k user_emulation\n" | sudo tee -a "$USER_EMULATION_RULES_FILE"
+    printf " -a always,exit -F arch=b64 -C euid!=uid -F auid!=unset -S execve -k user_emulation\n" | sudo tee -a "$USER_EMULATION_RULES_FILE"
+    printf " -a always,exit -F arch=b32 -C euid!=uid -F auid!=unset -S execve -k user_emulation\n" | sudo tee -a "$USER_EMULATION_RULES_FILE"
     
     echo "Audit rules for elevated privileges added successfully."
 }
@@ -727,13 +727,13 @@ create_time_change_rules() {
     echo "Creating or appending to $TIME_CHANGE_RULES_FILE with the relevant rules..."
     
     # Append the rules for 64-bit systems
-    printf "-a always,exit -F arch=b64 -S adjtimex,settimeofday,clock_settime -k time-change\n" | sudo tee -a "$TIME_CHANGE_RULES_FILE"
+    printf " -a always,exit -F arch=b64 -S adjtimex,settimeofday,clock_settime -k time-change\n" | sudo tee -a "$TIME_CHANGE_RULES_FILE"
     
     # Append the rules for 32-bit systems, including stime for 32-bit only
-    printf "-a always,exit -F arch=b32 -S adjtimex,settimeofday,clock_settime,stime -k time-change\n" | sudo tee -a "$TIME_CHANGE_RULES_FILE"
+    printf " -a always,exit -F arch=b32 -S adjtimex,settimeofday,clock_settime,stime -k time-change\n" | sudo tee -a "$TIME_CHANGE_RULES_FILE"
     
     # Add rule to monitor /etc/localtime for changes
-    printf "-w /etc/localtime -p wa -k time-change\n" | sudo tee -a "$TIME_CHANGE_RULES_FILE"
+    printf " -w /etc/localtime -p wa -k time-change\n" | sudo tee -a "$TIME_CHANGE_RULES_FILE"
     
     echo "Audit rules for monitoring time changes added successfully."
 }
@@ -741,17 +741,17 @@ create_network_env_rules() {
     echo "Creating or appending to $NETWORK_ENV_RULES_FILE with the relevant rules..."
     
     # Append the rules for 64-bit systems
-    printf "-a always,exit -F arch=b64 -S sethostname,setdomainname -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
+    printf " -a always,exit -F arch=b64 -S sethostname,setdomainname -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
     
     # Append the rules for 32-bit systems
-    printf "-a always,exit -F arch=b32 -S sethostname,setdomainname -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
+    printf " -a always,exit -F arch=b32 -S sethostname,setdomainname -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
     
     # Add rules to monitor system files related to network configuration
-    printf "-w /etc/issue -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
-    printf "-w /etc/issue.net -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
-    printf "-w /etc/hosts -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
-    printf "-w /etc/networks -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
-    printf "-w /etc/network/ -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
+    printf " -w /etc/issue -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
+    printf " -w /etc/issue.net -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
+    printf " -w /etc/hosts -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
+    printf " -w /etc/networks -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
+    printf " -w /etc/network/ -p wa -k system-locale\n" | sudo tee -a "$NETWORK_ENV_RULES_FILE"
     
     echo "Audit rules for monitoring network environment changes added successfully."
 }
@@ -759,8 +759,8 @@ create_login_rules() {
     echo "Creating or appending to $LOGIN_RULES_FILE with the relevant rules..."
     
     # Append the rules to monitor login/logout event files
-    printf "-w /var/log/lastlog -p wa -k logins\n" | sudo tee -a "$LOGIN_RULES_FILE"
-    printf "-w /var/run/faillock -p wa -k logins\n" | sudo tee -a "$LOGIN_RULES_FILE"
+    printf "  -w /var/log/lastlog -p wa -k logins\n" | sudo tee -a "$LOGIN_RULES_FILE"
+    printf "  -w /var/run/faillock -p wa -k logins\n" | sudo tee -a "$LOGIN_RULES_FILE"
     
     echo "Audit rules for monitoring login and logout events added successfully."
 }
@@ -768,11 +768,11 @@ create_identity_rules() {
     echo "Creating or appending to $IDENTITY_RULES_FILE with the relevant rules..."
     
     # Append the rules to monitor changes in user/group information files
-    printf "-w /etc/group -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
-    printf "-w /etc/passwd -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
-    printf "-w /etc/gshadow -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
-    printf "-w /etc/shadow -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
-    printf "-w /etc/security/opasswd -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
+    printf " -w /etc/group -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
+    printf " -w /etc/passwd -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
+    printf " -w /etc/gshadow -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
+    printf " -w /etc/shadow -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
+    printf " -w /etc/security/opasswd -p wa -k identity\n" | sudo tee -a "$IDENTITY_RULES_FILE"
     
     echo "Audit rules for monitoring user/group information changes added successfully."
 }
@@ -780,9 +780,9 @@ create_session_rules() {
     echo "Creating or appending to $SESSION_RULES_FILE with the relevant rules..."
     
     # Append the rules to monitor session initiation files
-    printf "-w /var/run/utmp -p wa -k session\n" | sudo tee -a "$SESSION_RULES_FILE"
-    printf "-w /var/log/wtmp -p wa -k session\n" | sudo tee -a "$SESSION_RULES_FILE"
-    printf "-w /var/log/btmp -p wa -k session\n" | sudo tee -a "$SESSION_RULES_FILE"
+    printf " -w /var/run/utmp -p wa -k session\n" | sudo tee -a "$SESSION_RULES_FILE"
+    printf " -w /var/log/wtmp -p wa -k session\n" | sudo tee -a "$SESSION_RULES_FILE"
+    printf " -w /var/log/btmp -p wa -k session\n" | sudo tee -a "$SESSION_RULES_FILE"
     
     echo "Audit rules for monitoring session initiation information added successfully."
 }
@@ -790,8 +790,8 @@ create_mac_policy_rules() {
     echo "Creating or appending to $MAC_POLICY_RULES_FILE with the relevant rules..."
     
     # Append the rules to monitor MAC policy directories
-    printf "-w /etc/apparmor/ -p wa -k MAC-policy\n" | sudo tee -a "$MAC_POLICY_RULES_FILE"
-    printf "-w /etc/apparmor.d/ -p wa -k MAC-policy\n" | sudo tee -a "$MAC_POLICY_RULES_FILE"
+    printf " -w /etc/apparmor/ -p wa -k MAC-policy\n" | sudo tee -a "$MAC_POLICY_RULES_FILE"
+    printf " -w /etc/apparmor.d/ -p wa -k MAC-policy\n" | sudo tee -a "$MAC_POLICY_RULES_FILE"
     
     echo "Audit rules for monitoring MAC policy changes added successfully."
 }
